@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Edit Profile </title>
+<link rel="stylesheet" href={{ url_for('static', filename='css/editProfile.css') }} />
+<link rel="stylesheet" href={{ url_for('static', filename='css/topStyle.css') }} />
+</head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+<body>
+<div id="title">
+	<a href="/">
+		<img id="logo" src= {{ url_for('static', filename='images/sitelogo.png') }} />
+	</a>
+	<form>
+		<input id="searchBox" type="text" name="searchQuery">
+		<input id="searchButton" type="submit" value="Search">
+	</form>
+
+	{% if not loggedIn %}
+	<div id="signInButton">
+		<a class="link" href="/loginForm">Sign In</a>
+	</div>
+	{% else %}
+	<div class="dropdown">
+		<button class="dropbtn">Welcome, <br>{{firstName}}</button>
+		<div class="dropdown-content">
+			<a href="/account/orders">Your orders</a>
+			<a href="/account/profile">Your profile</a>
+			<hr>
+			<a href="/logout">Sign Out</a>
+		</div>
+	</div>
+	{% endif %}
+	<div id="kart">
+		<a class="link" href="/cart">
+			<img src={{url_for('static', filename='images/shoppingCart.png')}} id="cartIcon" />
+			Cart ( {{noOfItems}} )
+		</a>
+	</div>
+</div>
+
+<div class="display">
+	<h2 align="center">View profile</h2>
+
+  <table align="center">
+  <tr>
+    <th>Email</th>
+    <td>{{profileData[1]}}</td>
+  </tr>
+  <tr>
+    <th>First Name</th>
+    <td>{{profileData[2]}}</td>
+  </tr>
+  <tr>
+    <th>Last Name</th>
+    <td>{{profileData[3]}}</td>
+  </tr>
+  <tr>
+    <th>Address 1</th>
+    <td>{{profileData[4]}}</td>
+  </tr>
+  <tr>
+    <th>Address 2</th>
+    <td>{{profileData[5]}}</td>
+  </tr>
+  <tr>
+    <th>Zip Code</th>
+    <td>{{profileData[6]}}</td>
+  </tr>
+  <tr>
+    <th>City</th>
+    <td>{{profileData[7]}}</td>
+  </tr>
+  <tr>
+    <th>State</th>
+    <td>{{profileData[8]}}</td>
+  </tr>
+  <tr>
+    <th>Country</th>
+    <td>{{profileData[9]}}</td>
+  </tr>
+  <tr>
+    <th>Phone Number</th>
+    <td>{{profileData[10]}}</td>
+  </tr>
+</table>
+</div>
+</body>
+</html>
